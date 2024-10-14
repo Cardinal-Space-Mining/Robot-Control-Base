@@ -1,8 +1,8 @@
 #pragma once
 
+#include <geometry_msgs/msg/pose.h>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joy.hpp>
-#include <geometry_msgs/msg/pose.h>
 
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <message_filters/subscriber.h>
@@ -21,19 +21,25 @@
 class RobotContainer : public rclcpp::Node
 {
 public:
-    RobotContainer(std::unique_ptr<BaseState> &&start_state, std::string name, rclcpp::NodeOptions options);
+    RobotContainer(std::unique_ptr<BaseState> start_state, std::string name,
+                   rclcpp::NodeOptions options);
+    inline RobotContainer(std::unique_ptr<BaseState> start_state,
+                          std::string name)
+    : RobotContainer(std::move(start_state), name, rclcpp::NodeOptions{})
+    {
+    }
     RobotContainer(RobotContainer &&) = delete;
-    RobotContainer &operator=(RobotContainer &&) = delete;
+    RobotContainer & operator=(RobotContainer &&) = delete;
 
 private:
     // Applies robot control message to Robot
-    void apply_ctrl(const robot_control &ctrl);
+    void apply_ctrl(const robot_control & ctrl);
 
     // Updates Base State
     void update();
 
     std::shared_ptr<rclcpp::Publisher<custom_types::msg::TalonCtrl>>
-    talon_ctrl_pub(const std::string &name);
+    talon_ctrl_pub(const std::string & name);
 
     void localization_msg_cb();
 
@@ -71,8 +77,7 @@ private:
     std::shared_ptr<rclcpp::Subscription<custom_types::msg::TalonInfo>>
         hopper_actuator_info;
 
-    std::shared_ptr<rclcpp::Publisher<geometry_msgs::msg::Pose>>
-        traversal_dst;
+    std::shared_ptr<rclcpp::Publisher<geometry_msgs::msg::Pose>> traversal_dst;
 
 private: // Localization Stuff
     const std::string robot_frame = "base_link";

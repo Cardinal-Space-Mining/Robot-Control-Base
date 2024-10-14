@@ -51,7 +51,7 @@ std::shared_ptr<rclcpp::Publisher<custom_types::msg::TalonCtrl>> RobotContainer:
     return this->create_publisher<custom_types::msg::TalonCtrl>(name, 10);
 }
 
-RobotContainer::RobotContainer(std::unique_ptr<BaseState> &&start_state, std::string name, rclcpp::NodeOptions options) : rclcpp::Node(name, options),
+RobotContainer::RobotContainer(std::unique_ptr<BaseState> start_state, std::string name, rclcpp::NodeOptions options) : rclcpp::Node(name, options),
                                                                                                                           current_state(std::move(start_state)),
                                                                                                                           joy_sub(this->create_subscription<sensor_msgs::msg::Joy>(
                                                                                                                               "joy", 10,
