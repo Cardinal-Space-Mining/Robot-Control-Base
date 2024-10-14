@@ -18,7 +18,7 @@ find_package(message_filters REQUIRED)
 include_directories(include)
  
 # define a library target called my_value_converter_library
-add_library(robot_control_base src/robot_control_base.cpp src/state_container_node.cpp)
+add_library(robot_control_base src/halt_state.cpp src/robot_control_base.cpp src/state_container_node.cpp)
 
 ament_target_dependencies(robot_control_base rclcpp custom_types sensor_msgs geometry_msgs tf2_geometry_msgs tf2 message_filters)
  

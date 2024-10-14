@@ -13,7 +13,7 @@
 
 #include "custom_types/msg/talon_ctrl.hpp"
 #include "custom_types/msg/talon_info.hpp"
-#include "robot_control_base/base_system.hpp"
+#include "robot_control_base/base_state.hpp"
 
 // Holds the common inputs a robot control needs
 // When a motor state changes, gamepad input is given, or location changes,

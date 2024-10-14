@@ -58,8 +58,13 @@ struct motor_control
         return msg;
     }
 
-    int8_t mode;
+    ControlType mode;
     double value;
+
+    motor_control() = default;
+    ~motor_control() = default;
+    template <typename T>
+    motor_control(ControlType ctrl_type, T value_) : mode(ctrl_type), value(value_) {}
 };
 
 struct pose2d
