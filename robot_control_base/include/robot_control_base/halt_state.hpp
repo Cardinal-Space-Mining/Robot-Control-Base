@@ -1,3 +1,4 @@
+#pragma once
 #include "robot_control_base/base_state.hpp"
 
 // This class just does nothing forever
