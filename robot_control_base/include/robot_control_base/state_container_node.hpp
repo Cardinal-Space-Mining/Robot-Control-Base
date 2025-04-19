@@ -77,6 +77,8 @@ private:
     std::shared_ptr<rclcpp::Subscription<custom_types::msg::TalonInfo>>
         hopper_actuator_info;
 
+    std::shared_ptr<rclcpp::Subscription<std_msgs::msg::Float32>> hopper_fullness_sub;
+
     std::shared_ptr<rclcpp::Publisher<geometry_msgs::msg::Pose>> traversal_dst;
 
 private: // Localization Stuff

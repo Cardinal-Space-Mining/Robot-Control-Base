@@ -79,7 +79,13 @@ RobotContainer::RobotContainer(std::unique_ptr<BaseState> start_state, std::stri
                                                                                                                                                                                             "hopper_actuator_info", 10,
                                                                                                                                                                                             [this](const custom_types::msg::TalonInfo &msg)
                                                                                                                                                                                             { this->robot_state.hopper_actuator = msg; this->update(); })),
-                                                                                                                          traversal_dst(this->create_publisher<geometry_msgs::msg::Pose>("traversal", 10)),
+                                                                                                                          traversal_dst(this->create_publisher<geometry_msgs::msg::Pose>("traversal", 10))
+                                                                                                                          ,
+
+
+                                                                                                                          hopper_fullness_sub(this->create_subscription<std_msgs::msg::Float32>("hopper_fullness", 10)),
+
+
                                                                                                                           timer_(this->create_wall_timer(
                                                                                                                               std::chrono::milliseconds(100),
                                                                                                                               [this]() {}))
