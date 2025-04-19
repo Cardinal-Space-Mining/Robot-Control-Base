@@ -83,9 +83,9 @@ RobotContainer::RobotContainer(std::unique_ptr<BaseState> start_state, std::stri
                                                                                                                           ,
 
 
-                                                                                                                          hopper_fullness_sub(this->create_subscription<std_msgs::msg::Float32>("hopper_fullness", 10)),
+                                                                                                                          hopper_fullness_sub(this->create_subscription<std_msgs::msg::Float32>("hopper_fullness", 10 { this->hopper_fullness = msg; this->update();})),
 
-
+                                                                                                                            // Timer not used currently because update is called every time a ROS message comes through
                                                                                                                           timer_(this->create_wall_timer(
                                                                                                                               std::chrono::milliseconds(100),
                                                                                                                               [this]() {}))
